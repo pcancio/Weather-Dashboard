@@ -1,0 +1,39 @@
+#header {
+    text-align: center;
+    font-size: 2em;
+}
+
+#main {
+    max-width: 100%;
+}
+
+.btn-secondary {
+    margin: 3px 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+}
+
+#city {
+    margin-bottom: 12px;
+}
+
+#button-container {
+    min-height: 70px;
+}
+
+#five-day-forecast {
+    flex-direction: row;
+    margin-left: -4px;
+}
+
+#five-day-forecast .card-body,
+#today-temp .card-body {
+    border: 2px solid;
+}
+
+@media (max-width: 992px) {
+    #current-temp {
+        margin-bottom: 5%;
+    }
+}

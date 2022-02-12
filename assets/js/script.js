@@ -92,3 +92,85 @@ currentWeatherCardOL.append(currentWeatherHumidity);
 currentWeatherCardOL.append(currentWeatherCardWind);
 currentWeatherCardOL.append(currentWeatherCardUVI);
 currentWeather.append(currentWeatherCard);
+
+// 5-day forecast stuff
+fiveDayForecast.innerHTML = '';
+// do all this 5x
+for (var i = 0; i < 5; i++) {
+    parseInt(dd);
+    dd++;
+    today = mm + '/' + dd + '/' + yyyy;
+    var dailyWeatherCard = document.createElement('div');
+    dailyWeatherCard.classList.add('card', 'col-md', 'col-sm-12');
+    var dailyWeatherCardImg = document.createElement('img');
+    dailyWeatherCardImg.classList.add('card-image-top');
+    dailyWeatherCardImg.setAttribute("src", "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + ".png")
+    var dailyWeatherCardBody = document.createElement('div');
+    dailyWeatherCardBody.classList.add('card-body');
+    var dailyWeatherCardTitle = document.createElement('h5')
+    dailyWeatherCardTitle.classList.add('card-title');
+    dailyWeatherCardTitle.textContent = city + ' : ' + today;
+    var dailyWeatherCardText = document.createElement('div');
+    dailyWeatherCardText.classList.add('card-text');
+    var dailyWeatherCardOL = document.createElement('ul');
+    var dailyWeatherCardTemp = document.createElement('li');
+    dailyWeatherCardTemp.textContent = 'Anticipated Temperature (f) = ' + data.daily[i].temp.day;
+    var dailyWeatherHumidity = document.createElement('li');
+    dailyWeatherHumidity.textContent = 'Anticipated Humidity = ' + data.daily[i].humidity;
+    var dailyWeatherCardWind = document.createElement('li');
+    dailyWeatherCardWind.textContent = 'Anticipated Wind Speed (mph) = ' + data.daily[i].wind_speed;
+    var dailyWeatherCardUVI = document.createElement('li');
+    dailyWeatherCardUVI.textContent = 'Anticipated UVI = ' + data.daily[i].uvi;
+
+    if (data.daily[i].uvi < 3) {
+        dailyWeatherCardUVI.classList.add('text-success');
+    } else if (data.current.uvi < 6) {
+        dailyWeatherCardUVI.classList.add('text-warning');
+    } else {
+        dailyWeatherCardUVI.classList.add('text-danger');
+    }
+    dailyWeatherCardBody.append(dailyWeatherCardImg);
+    dailyWeatherCard.append(dailyWeatherCardBody);
+    dailyWeatherCardBody.append(dailyWeatherCardTitle);
+    dailyWeatherCardBody.append(dailyWeatherCardText);
+    dailyWeatherCardText.append(dailyWeatherCardOL);
+    dailyWeatherCardOL.append(dailyWeatherCardTemp);
+    dailyWeatherCardOL.append(dailyWeatherHumidity);
+    dailyWeatherCardOL.append(dailyWeatherCardWind);
+    dailyWeatherCardOL.append(dailyWeatherCardUVI);
+    fiveDayForecast.append(dailyWeatherCard);
+};
+
+var inputBtnValue = function(event) {
+    getCurrentWeather(event.target.textContent);
+}
+
+var historyBtn = function() {
+    btnContainer.innerHTML = '';
+
+    for (var i = 0; i < cityHistory.length; i++) {
+        var recentSearch = document.createElement('button');
+        recentSearch.classList.add('btn-secondary');
+        recentSearch.textContent = cityHistory[i];
+        recentSearch.addEventListener('click', inputBtnValue);
+        btnContainer.append(recentSearch);
+    }
+}
+
+var getCityInput = function(event) {
+    event.preventDefault();
+
+    if (cityInput && cityInput.value) {
+        var city = cityInput.value;
+        getCurrentWeather(city);
+        saveHistory(city);
+        historyBtn();
+    } else {
+        alert('Please Enter a City Name');
+    }
+
+}
+
+
+searchWeather.addEventListener("click", getCityInput)
+historyBtn();
