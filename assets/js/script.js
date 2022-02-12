@@ -50,3 +50,24 @@ fetch(apiLongLat).then(function(response) {
         })
     }
 });
+// current weather card with required parameters
+var currentWeatherCard = document.createElement('div');
+currentWeatherCard.classList.add('card');
+var currentWeatherCardImg = document.createElement('img');
+currentWeatherCardImg.setAttribute("src", "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + ".png")
+var currentWeatherCardBody = document.createElement('div');
+currentWeatherCardBody.classList.add('card-body');
+var currentWeatherCardTitle = document.createElement('h5')
+currentWeatherCardTitle.classList.add('card-title');
+currentWeatherCardTitle.textContent = city + ' : ' + today;
+var currentWeatherCardText = document.createElement('div');
+currentWeatherCardText.classList.add('card-text');
+var currentWeatherCardOL = document.createElement('ul');
+var currentWeatherCardTemp = document.createElement('li');
+currentWeatherCardTemp.textContent = 'Current Temperature (f) = ' + data.current.temp;
+var currentWeatherHumidity = document.createElement('li');
+currentWeatherHumidity.textContent = 'Current Humidity = ' + data.current.humidity;
+var currentWeatherCardWind = document.createElement('li');
+currentWeatherCardWind.textContent = 'Current Wind Speed (mph) = ' + data.current.wind_speed;
+var currentWeatherCardUVI = document.createElement('li');
+currentWeatherCardUVI.textContent = 'Current UVI = ' + data.current.uvi;
