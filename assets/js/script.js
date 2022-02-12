@@ -71,3 +71,12 @@ var currentWeatherCardWind = document.createElement('li');
 currentWeatherCardWind.textContent = 'Current Wind Speed (mph) = ' + data.current.wind_speed;
 var currentWeatherCardUVI = document.createElement('li');
 currentWeatherCardUVI.textContent = 'Current UVI = ' + data.current.uvi;
+
+//add class based on UVI
+if (data.current.uvi < 3) {
+    currentWeatherCardUVI.classList.add('text-success');
+} else if (data.current.uvi < 6) {
+    currentWeatherCardUVI.classList.add('text-warning');
+} else {
+    currentWeatherCardUVI.classList.add('text-danger');
+};
