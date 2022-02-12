@@ -21,4 +21,4 @@ THEN I am again presented with current and future conditions for that city
 <img src="assets/images/Screen Shot 2022-02-12 at 10.55.10.png">
 
 ## Links
-deployed application: 
+deployed application: https://pcancio.github.io/weather-dashboard/
