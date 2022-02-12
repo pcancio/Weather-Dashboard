@@ -50,7 +50,7 @@ fetch(apiLongLat).then(function(response) {
         })
     }
 });
-// current weather card with required parameters
+// create current weather card with required parameters
 var currentWeatherCard = document.createElement('div');
 currentWeatherCard.classList.add('card');
 var currentWeatherCardImg = document.createElement('img');
@@ -80,3 +80,15 @@ if (data.current.uvi < 3) {
 } else {
     currentWeatherCardUVI.classList.add('text-danger');
 };
+
+//append items to card 
+currentWeatherCardBody.append(currentWeatherCardImg);
+currentWeatherCard.append(currentWeatherCardBody);
+currentWeatherCardBody.append(currentWeatherCardTitle);
+currentWeatherCardBody.append(currentWeatherCardText);
+currentWeatherCardText.append(currentWeatherCardOL);
+currentWeatherCardOL.append(currentWeatherCardTemp);
+currentWeatherCardOL.append(currentWeatherHumidity);
+currentWeatherCardOL.append(currentWeatherCardWind);
+currentWeatherCardOL.append(currentWeatherCardUVI);
+currentWeather.append(currentWeatherCard);
